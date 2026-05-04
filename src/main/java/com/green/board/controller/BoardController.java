@@ -22,7 +22,7 @@ public class BoardController {
 	private BoardMapper boardMapper;
 	
 	// /Board/List?menu_id=MENU01
-	@RequestMapping("/List")
+	@RequestMapping("/List") 
 	public ModelAndView list(MenuDTO menudto) {
 		
 		List<BoardDto> boardList = boardMapper.getBoardList(menudto);

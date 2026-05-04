@@ -29,6 +29,7 @@
     <div>&nbsp;</div>
     <div><a href="/Board/List?menu_id=MENU01">게시글 목록</a></div>
     <div><a href="/Board/WriteForm?menu_id=MENU01">게시글 추가</a></div>
+    <div>&nbsp;</div>
     
   </main>
   
