@@ -74,7 +74,7 @@ public class BoardController {
 		boardMapper.deleteboard(boarddto);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Board/List?menu_id=MENU01");
+		mv.setViewName("redirect:/Board/List?menu_id=" + boarddto.getMenu_id());
 		return mv;
 	}
 	
