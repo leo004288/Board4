@@ -31,11 +31,11 @@ public class BoardController {
 		
 		// 메뉴목록 조회 - menu.jsp
 		List<MenuDTO> menuList = menuMapper.getMenuList();
-		log.info("menuList:" + menuList);
+//		log.info("menuList:" + menuList);
 		 
 		// 게시물 목록 조회 - list.jsp
 		List<BoardDto> boardList = boardMapper.getBoardList(menudto);
-		log.info("boardList:" + boardList);
+//		log.info("boardList:" + boardList);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/list");
@@ -45,7 +45,37 @@ public class BoardController {
 		return mv; 
 	}
 	
+	//	/Borad/View?idx=1
+	@RequestMapping("/View")
+	public ModelAndView view (BoardDto boarddto) {
+		
+		// 메뉴목록 조회 - menu.jsp
+		List<MenuDTO> menuList = menuMapper.getMenuList();
+		
+		// idx 글의 조회수 1 증가
+		boardMapper.incHit(boarddto);
+		
+		// idx 로 조회한 게시글 
+		BoardDto board = boardMapper.getBoard(boarddto);
+//		log.debug("board:" + board);
+		System.out.println("board:" + board);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/view");
+		mv.addObject("menuList", menuList);
+		mv.addObject("board", board);
+		return mv;
+	}
 	
-	
+	// /Board/Delete?userid=${board.idx    }
+	@RequestMapping("/Delete")
+	public ModelAndView delete(BoardDto boarddto) {
+		
+		boardMapper.deleteboard(boarddto);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Board/List?menu_id=MENU01");
+		return mv;
+	}
 	
 }
