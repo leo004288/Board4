@@ -24,9 +24,12 @@
 	<script>
 		// 새창이 열릴때 
 		document.addEventListener('DOMContentLoaded', function() {
-// 			const thisUseridEl   = window.document.querySelector('[name=userid]')
-// 	 		const parentUseridEl = window.opener.document.querySelector('[name=userid]')
-// 	 		thisUseridEl.value   = parentUseridEl.value
+			// 페이지를 처음 호출했는지 체크
+			if('${first}' == 'true') {
+			const thisUseridEl   = window.document.querySelector('[name=userid]')
+	 		const parentUseridEl = window.opener.document.querySelector('[name=userid]')
+	 		thisUseridEl.value   = parentUseridEl.value				
+			}
 		})
 		
 	 	// 사용하기 버튼

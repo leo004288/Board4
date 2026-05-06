@@ -65,14 +65,24 @@
 	WHERE  USERID = #{userid}
 	</delete>
 	
-<!-- 	사용자 수정 -->
+<!-- 	사용자 수정 : oldpwd, arg0, param1 -->
 	<update id="updateUser">
+	UPDATE TUSER
+	SET    PASSWD   = #{userdto.passwd},
+	       USERNAME = #{userdto.username},
+	       EMAIL    = #{userdto.email}
+	WHERE  USERID   = #{userdto.userid} 
+	  AND  PASSWD   = #{oldpwd}
+	</update>
+	
+<!-- 	사용자 수정 : map -->
+	<update id="updateUser2">
 	UPDATE TUSER
 	SET    PASSWD   = #{passwd},
 	       USERNAME = #{username},
 	       EMAIL    = #{email}
-	WHERE  USERID   = #{userid}
+	WHERE  USERID   = #{userid} 
+	  AND  PASSWD   = #{oldpwd}
 	</update>
-	
 	
 </mapper>
