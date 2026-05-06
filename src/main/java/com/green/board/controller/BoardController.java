@@ -69,12 +69,12 @@ public class BoardController {
 	
 	// /Board/Delete?userid=${board.idx    }
 	@RequestMapping("/Delete")
-	public ModelAndView delete(BoardDto boarddto) {
+	public ModelAndView delete(BoardDto boarddto, MenuDTO menudto) {
 		
 		boardMapper.deleteboard(boarddto);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Board/List?menu_id=" + boarddto.getMenu_id());
+		mv.setViewName("redirect:/Board/List?menu_id=" + menudto.getMenu_id());
 		return mv;
 	}
 	
