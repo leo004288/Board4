@@ -38,7 +38,7 @@
 
 	#table2 tr:last-of-type > td {
 		background: white;
-		border: 1px solid black;
+		border: 1px solid #808080;
 		}
 		
 	input[type=button],input[type=submit] {
@@ -55,6 +55,8 @@
 			border: 1px solid white;
 			}
 		}
+	
+	.menu td > .${menu_id} {background-color: #04AA6D;}
 	
 </style>
 
