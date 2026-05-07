@@ -18,6 +18,8 @@ public interface BoardMapper {
 
 	void incHit(BoardDto boarddto);
 
+	void insertBoard(BoardDto boarddto);
+
 	
 
 }

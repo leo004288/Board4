@@ -82,7 +82,12 @@
 		height:400px;
 		}
 	
-	.menu td {border: 1px solid white;}
+	.menu {
+		margin-top: 10px;
+		td {
+			border: 1px solid white;
+			}
+		}
 	
 </style>
 

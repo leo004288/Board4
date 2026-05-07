@@ -23,6 +23,13 @@ namespace : com.green.menus.mapper.MenuMapper 인터페이스 위치
 	 WHERE     MENU_ID = #{ menu_id }
 	</select>
     
+<!-- 현재 게시판 -->
+    <select id="getMenu_name" >
+	SELECT MENU_NAME
+	FROM   MENUS  
+	WHERE  MENU_ID = #{menu_id}
+    </select>
+    
     <!-- 메뉴추가 조회 -->
     <insert id="insertMenu">
     INSERT INTO MENUS ( MENU_ID, MENU_NAME, MENU_SEQ)

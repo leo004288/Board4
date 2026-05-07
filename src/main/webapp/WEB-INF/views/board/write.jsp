@@ -14,23 +14,29 @@
 <style>
 
 	table {width:100%;}
+	#table2 {margin-bottom:150px;}
 	
 	td {
 		padding:5px 10px;
 		text-align:center
 		}
 		
-	input[type=text],input[type=number],input[type=password],input[type=email],textarea {
+	input[type=text],input[type=number],input[type=password],input[type=email] {
 		width:100%;
 		}
-
+	
+	textarea {
+		width:100%;
+		height:300px;
+		}
+	
 	td:nth-of-type(1) {
 		background-color: black;
 		color: white;
 		border-bottom: 1px solid white;
 		}
 
-	tr:last-child >td {
+	#table2 tr:last-of-type > td {
 		background: white;
 		border: 1px solid black;
 		}
@@ -43,28 +49,36 @@
 		width: 60%
 		}
 	
+	.menu {
+		margin-top: 10px;
+		td {
+			border: 1px solid white;
+			}
+		}
+	
 </style>
 
 </head> 
 <body>
 	<main>
-	  <h2>새 글 쓰기</h2>
+	<%@include file="/WEB-INF/include/menus.jsp" %>
+	  <h2>새 글 쓰기 [${menu_name} 게시판]</h2>
 	  
 	  <form action="/Board/Write" method="post">
 	  <input type="hidden" name="menu_id" value="${menu_id}"></input>
-	   <table>
+	   <table id="table2">
 	     <tr>
 	       <td><span class=red>*</span>제목</td>
 	       <td><input type="text" name="title"></td>
 	     </tr>
 	     <tr>
-	       <td>내용</td>
-	       <td><textarea name="content"></textarea></td>
-	     </tr>
-	     <tr>
 	       <td><span class=red>*</span>작성자</td>
 	       <td><input type="text" name="writer"></td>
 	     </tr>  
+	     <tr>
+	       <td>내용</td>
+	       <td><textarea name="content"></textarea></td>
+	     </tr>
 	     <tr>
 	       <td colspan="2">
 	         <input type="submit" value="추가">
@@ -77,112 +91,6 @@
 	</main>
 	
 <!-- javascript -->
-	<script>
-	    var   idDupChecked = false 	
-	
-		const formEl     = document.querySelector('form');
-		const useridEl   = document.querySelector('[name="userid"]');
-		const passwdEl   = document.querySelector('#passwd');
-		const passwd2El  = document.querySelector('#passwd2');
-		const usernameEl = document.querySelector('[name="username"]');
-		
-		// 입력확인 체크
-		formEl.addEventListener('submit', function (e) {
-			
-			// 아이디 체크 
-			if(useridEl.value.trim() == '') {
-				alert('아이디를 입력하세요')
-				useridEl.focus();
-				e.preventDefault()  // 이벤트 취소
-				e.stopPropagation() // 이벤트 버블링 방지
-				return;
-			}
-			// 아이디 중복확인 체크 확인 여부
-			if(!idDupChecked){
-				alert("아이디 중복확인을 하세요")
-				e.preventDefault()  // 이벤트 취소
-				e.stopPropagation() // 이벤트 버블링 방지
-				return;
-			}
-			// 비밀번호 체크 
-			if(passwdEl.value.trim() == '') {
-				alert('비밀번호를 입력하세요')
-				passwdEl.focus();
-				e.preventDefault()  // 이벤트 취소
-				e.stopPropagation() // 이벤트 버블링 방지
-				return;
-			}
-			// 비밀번호가 == 비밀번호확인 체크 
-			if(passwd2El.value != passwdEl.value) {
-				alert('비밀번호가 일치하지 않습니다')
-				passwd2El.focus();
-				e.preventDefault()  // 이벤트 취소
-				e.stopPropagation() // 이벤트 버블링 방지
-				return;
-			}
-			// 이름 체크 
-			if(usernameEl.value.trim() == '') {
-				alert('이름을 입력하세요')
-				usernameEl.focus();
-				e.preventDefault()  // 이벤트 취소
-				e.stopPropagation() // 이벤트 버블링 방지
-				return;
-			}
-			
-		})
-	
-	
-	</script>
-	<script>
-		// 아이디 중복확인(새창열기)
-		const btnDup1El = document.querySelector("#dupCheck1")
-		
-		btnDup1El.addEventListener('click', function() {
-			alert('ok')
-			// 새창을 띄운다
-			let url     = '/Users/DupCheckWindow?frist=true';
-// 			let url     = '/Users/DupCheckWindow';                 // session 활용 방식
-			let taget   = 'dupcheck';                              // 새창 이름있으면 한개만 열림
-			let feature = 'left=800,top=200,width=400,height=300'; 
-			window.open(url, taget, feature)
-		})
-		
-	</script>
-	<script>
-		// 아이디 중복확인2(Ajax)
-		const btnDup2El = document.querySelector("#dupCheck2")
-		
-		btnDup2El.addEventListener('click', function() {
-			if(useridEl.value.trim() == '') {
-				alert('아이디를 입력하세요')
-				useridEl.focus()
-				return
-			}
-			alert('ok')
-			let url = '/Users/IdDupCheck2?userid=' + useridEl.value
-					
-			fetch(url)
-			.then(response => response.json())
-			.then(data => {
-					console.log(data.userid)
-					if(data.userid != null) {
-						alert('사용불가능')
-						idDupChecked = false
-					} else {
-						alert('사용가능')
-						idDupChecked = true
-						}
-				});
-			
-		})
-		
-		// userid 의 value가 바뀌면 idDupChecked = false
-		useridEl.addEventListener('change', function() {
-			idDupChecked = false
-		})
-		
-		
-	</script>
 	
 </body>
 </html>
