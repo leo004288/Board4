@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 <link href="/img/favicon.png" rel="shortcut icon" type="image/x-icon">
 <link href="/css/common.css" rel="stylesheet"/>
 
@@ -23,7 +25,7 @@
 		text-align:center;
 		}
 
-	.list {
+	#list {
 	td:nth-of-type(1) {width:100px;}
 	td:nth-of-type(2) {width:300px;}
 	td:nth-of-type(3) {width:100px;}
@@ -50,14 +52,17 @@
 	
 	.title {text-align:left;}
 	
+	.menu td {border: 1px solid white;}
+	
 </style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </head>
 <body>
 	<main>
 	  <%@include file="/WEB-INF/include/menus.jsp" %>	
 	  <h2>게시물 목록 ${msg} </h2>
-	  <table class="list">
+	  <table id="list">
 	  
 	  	<tr>
 	  	  <td>번호</td>

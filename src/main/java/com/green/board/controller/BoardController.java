@@ -67,7 +67,32 @@ public class BoardController {
 		return mv;
 	}
 	
-	// /Board/Delete?userid=${board.idx    }
+	// /Board/WriteForm?menu_id=${board.menu_id}
+	@RequestMapping("/WriteForm")
+	public ModelAndView writeform(BoardDto boarddto) {
+//		System.out.println("/Board/WriteFrom boarddto:" + boarddto);
+		
+		String menu_id = boarddto.getMenu_id();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/write");
+		mv.addObject("menu_id", menu_id);
+		return mv;
+	}
+	
+	// /Board/Write?menu_id=MENU01&title=a&content=a&writer=a
+	@RequestMapping("/Write")
+	public ModelAndView write(BoardDto boarddto) {
+		
+		String menu_id = boarddto.getMenu_id();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Board/List?menu_id=" + menu_id );
+		return mv;
+	}
+	
+	
+	// /Board/Delete?idx=${board.idx    }
 	@RequestMapping("/Delete")
 	public ModelAndView delete(BoardDto boarddto, MenuDTO menudto) {
 		
