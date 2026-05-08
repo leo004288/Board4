@@ -40,14 +40,15 @@
 				color: white;
 				background-color: black;
 				padding:10px;
-				&:hover {
+				&:hover, &.active {
 					text-decoration:none;			
 					color: white;
 					background-color: #04AA6D;
 					}
 				}
 			}
-		}
+		} 
 		
+	
 
 	

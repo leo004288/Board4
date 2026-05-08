@@ -90,12 +90,10 @@
 	  	<c:forEach var="board" items="${boardList}">
 	  	<tr>
 	  	  <td> ${ board.idx     } </td>       
-	  	  <td class="title"> <a href="/Board/View?idx=${board.idx}">${ board.title }</a> </td>
+	  	  <td class="title"> <a href="/Board/View?idx=${board.idx}&menu_id=${board.menu_id}">${ board.title }</a> </td>
 	  	  <td> ${ board.writer  } </td>
 	  	  <td> ${ board.regdate } </td>
 	  	  <td> ${ board.hit     } </td>
-<%-- 	  	  <td> <a href="/Board/Delete?idx=${board.idx}">삭제</a> </td> --%>
-<%-- 	  	  <td> <a href="/Board/UpdateForm?idx=${board.idx}">수정</a> </td> --%>
 	  	</tr>
 	  	</c:forEach>
 	  	

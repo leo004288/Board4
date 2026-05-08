@@ -52,7 +52,7 @@ public class BoardController {
 		return mv; 
 	}
 	
-	//	/Borad/View?idx=1
+	//	/Borad/View?idx=1&menu_id=MENU01
 	@RequestMapping("/View")
 	public ModelAndView view (BoardDto boarddto, MenuDTO menudto) {
 		
@@ -74,6 +74,7 @@ public class BoardController {
 		mv.setViewName("board/view");
 		mv.addObject("menuList", menuList);
 		mv.addObject("board", board);
+		mv.addObject("menu_id", board.getMenu_id());
 		return mv;
 	}
 	
