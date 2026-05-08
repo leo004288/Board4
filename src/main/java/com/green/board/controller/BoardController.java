@@ -68,6 +68,7 @@ public class BoardController {
 //		System.out.println("board:" + board);
 		
 		// content 안에 있는 엔터 \n 을 <br> 변경 -> content
+		if(board != null && board.getContent() != null)
 		board.setContent(board.getContent().replace("\n", "<br>"));
 		
 		ModelAndView mv = new ModelAndView();
@@ -110,19 +111,56 @@ public class BoardController {
 				
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/Board/List?menu_id=" + menu_id );
+		mv.addObject("menu_id", menu_id);
 		return mv;
 	}
 	
 	
-	// /Board/Delete?idx=${board.idx}
+	// /Board/Delete?idx=${board.idx}&menu_id=${menu_id}
+	//                   삭제번호             삭제후 돌아올번호
 	@RequestMapping("/Delete")
 	public ModelAndView delete(BoardDto boarddto) {
 		
-		boardMapper.deleteboard(boarddto);
+		// 삭제
+		boardMapper.deleteBoard(boarddto);
 		
 		String menu_id = boarddto.getMenu_id();
 		
+		// 목록으로 돌아감
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Board/List?menu_id=" + menu_id);
+		return mv;
+	}
+	
+	// /Board/UpdateForm?idx=8&menu_id=MENU01
+	@RequestMapping("/UpdateForm")
+	public ModelAndView updateForm (BoardDto boarddto, MenuDTO menudto) {
+		
+		// 메뮤목록
+		List<MenuDTO> menuList = menuMapper.getMenuList();
+		
+		// 넘어온 데이터(idx)로 수정할 정보(board) 조회
+		BoardDto board = boardMapper.getBoard(boarddto);
+		
+		String       menu_id   = boarddto.getMenu_id();
+		String       menu_name = menuMapper.getMenu_name(menudto);
+		ModelAndView mv        = new ModelAndView();
+		mv.setViewName("/board/update");
+		mv.addObject("board", board);
+		mv.addObject("menuList", menuList);
+		mv.addObject("menu_id", menu_id);
+		mv.addObject("menu_name", menu_name);
+		return mv;
+	}
+	
+	//
+	@RequestMapping("/Update")
+	public ModelAndView update(BoardDto boarddto) {
+		
+		boardMapper.updateBoard(boarddto);
+		
+		String       menu_id = boarddto.getMenu_id();
+		ModelAndView mv      = new ModelAndView();
 		mv.setViewName("redirect:/Board/List?menu_id=" + menu_id);
 		return mv;
 	}
